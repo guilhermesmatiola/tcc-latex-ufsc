@@ -1,48 +1,31 @@
-# Template de TCC em LaTeX — Geologia UFSC
+# Templates de TCC em Geologia da UFSC
 
-Modelo limpo e modular para o Trabalho de Conclusão de Curso de Graduação em Geologia da Universidade Federal de Santa Catarina.
+Este repositório reúne duas versões do mesmo modelo de Trabalho de Conclusão de Curso para o Curso de Graduação em Geologia da Universidade Federal de Santa Catarina e um guia para manter as versões sincronizadas.
 
-## Começo rápido
-
-1. Edite `dados.tex` com seus dados.
-2. Substitua o conteúdo dos arquivos em `pre-textuais/` e `capitulos/`.
-3. Adicione as referências em `referencias.bib`.
-4. Coloque mapas, perfis, fotografias e demais imagens em `figuras/`.
-5. Compile `main.tex` no Overleaf ou localmente.
-
-No Overleaf, selecione XeLaTeX. Para compilar localmente com uma distribuição TeX completa:
+## Estrutura do repositório
 
 ```text
-latexmk -xelatex main.tex
+.
+├── latex/      projeto modular para Overleaf, XeLaTeX ou Tectonic
+├── docs/       modelo DOCX editável no Word e importável no Google Docs
+└── guia-ia/    instruções para converter o texto do Docs para LaTeX
 ```
 
-Também é possível usar Tectonic:
+## Qual versão usar
 
-```text
-tectonic main.tex
-```
+- Use [`latex/`](latex/) para escrever diretamente no Overleaf ou manter a versão final tipograficamente controlada.
+- Use [`docs/`](docs/) para escrever de forma colaborativa no Google Docs ou no Microsoft Word.
+- Use [`guia-ia/`](guia-ia/) quando um agente de IA for responsável por levar o conteúdo escrito no Docs para o projeto LaTeX.
 
-## Organização
+As duas versões seguem a mesma organização geral: elementos pré-textuais, introdução, área de estudo e contexto geológico, materiais e métodos, resultados, discussão, conclusões, referências, apêndices e anexos.
 
-- `main.tex`: ordem do documento.
-- `dados.tex`: metadados preenchidos uma única vez.
-- `estilo/tcc-geologia-ufsc.sty`: formatação e comandos reutilizáveis.
-- `pre-textuais/`: dedicatória, agradecimentos, epígrafe, resumo, abstract, siglas e símbolos.
-- `capitulos/`: conteúdo textual do TCC.
-- `pos-textuais/`: apêndices e anexos.
-- `referencias.bib`: base bibliográfica.
-- `figuras/`: imagens e identidade visual.
+## Fluxo recomendado
 
-## Recursos para Geologia
+1. Escreva e revise o conteúdo no Google Docs usando o arquivo de `docs/` como ponto de partida.
+2. Exporte uma cópia em `.docx` quando houver uma versão pronta para conversão.
+3. Entregue o `.docx`, a pasta `latex/` e o guia de `guia-ia/` ao agente de IA.
+4. Compile o LaTeX e confira visualmente texto, citações, figuras, tabelas, sumário e referências.
+5. Mantenha o Docs como fonte editorial até definir que o LaTeX passou a ser a versão principal.
 
-- `\figuratcc`: mapas, fotografias, perfis e diagramas com legenda, fonte e rótulo.
-- `\figuraplaceholder`: espaço temporário para uma figura ainda não finalizada.
-- `\dadoestrutural`: notação consistente para atitude de estruturas.
-- `\coordenadas`: apresentação uniforme de coordenadas.
-- ambiente `quadro`: conteúdo textual com lista própria.
-- ambiente `paisagem`: mapas e tabelas em orientação horizontal.
-
-Leia os comentários nos arquivos `.tex`: eles indicam onde substituir conteúdo sem poluir o PDF final.
-
-> Atenção: normas do curso e da Biblioteca Universitária podem mudar. Antes da entrega, confirme a versão vigente com a Coordenação de Geologia e com a BU/UFSC.
+> Este é um modelo de apoio, não um documento oficial da UFSC. Antes da entrega, confirme as normas vigentes com a Coordenação do Curso de Geologia e com a Biblioteca Universitária.
 
