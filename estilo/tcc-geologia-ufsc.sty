@@ -1,0 +1,196 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{estilo/tcc-geologia-ufsc}[2026/09/19 Template de TCC de Geologia da UFSC]
+
+% Família serifada próxima à Times, disponível em distribuições TeX completas.
+% Evita dependência das fontes instaladas no sistema operacional.
+\RequirePackage[T1]{fontenc}
+\RequirePackage{newtxtext,newtxmath}
+
+\RequirePackage{geometry}
+\geometry{a4paper,top=3cm,bottom=2cm,left=3cm,right=2cm,headsep=0.8cm}
+\RequirePackage{microtype}
+\RequirePackage{indentfirst}
+\RequirePackage{graphicx}
+\graphicspath{{figuras/}}
+\RequirePackage{xcolor}
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{longtable}
+\RequirePackage{array}
+\RequirePackage{multirow}
+\RequirePackage{siunitx}
+\sisetup{locale=FR,per-mode=symbol}
+\RequirePackage{amsmath}
+\RequirePackage{chemformula}
+\RequirePackage{float}
+\RequirePackage{newfloat}
+\RequirePackage{pdflscape}
+\RequirePackage{tikz}
+\RequirePackage{enumitem}
+\RequirePackage{etoolbox}
+\RequirePackage{csquotes}
+\RequirePackage{pdfpages}
+\RequirePackage{hyperref}
+\RequirePackage{bookmark}
+\RequirePackage[brazilian,hyperpageref]{backref}
+\RequirePackage[alf]{abntex2cite}
+
+\definecolor{cinzaPlaceholder}{RGB}{95,95,95}
+\definecolor{cinzaFundo}{RGB}{245,245,245}
+\definecolor{azulUFSC}{RGB}{0,76,151}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=azulUFSC,
+  bookmarksdepth=4,
+  pdfcreator={XeLaTeX com abnTeX2},
+  pdfkeywords={UFSC, Geologia, TCC, abnTeX2}
+}
+
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+\setlength{\ABNTEXcitacaorecuo}{4cm}
+\setlist{nosep}
+
+\renewcommand{\ABNTEXchapterfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize}
+\renewcommand{\ABNTEXsectionfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsectionfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsubsectionfont}{\normalfont\itshape}
+\renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
+\setlength{\afterchapskip}{\onelineskip}
+\setlength{\cftbeforechapterskip}{0pt}
+
+% Paginação exibida somente a partir da parte textual, sempre no alto à direita.
+\makepagestyle{tccgeologia}
+\makeevenhead{tccgeologia}{}{}{\thepage}
+\makeoddhead{tccgeologia}{}{}{\thepage}
+\makeevenfoot{tccgeologia}{}{}{}
+\makeoddfoot{tccgeologia}{}{}{}
+\aliaspagestyle{chapter}{tccgeologia}
+
+\newcommand{\TextoModelo}[1]{\textcolor{cinzaPlaceholder}{\textit{[#1]}}}
+\newcommand{\FonteTCC}[1]{\par\vspace{2pt}{\footnotesize Fonte: #1.}}
+\newcommand{\coordenadas}[2]{\mbox{#1; #2}}
+\newcommand{\dadoestrutural}[3]{\ensuremath{#1}: \mbox{#2/#3}}
+\newcommand{\unidadegeologica}[1]{\textit{#1}}
+
+\newcommand{\figuratcc}[5][0.82\textwidth]{%
+  \begin{figure}[H]
+    \centering
+    \caption{#3}\label{#5}
+    \includegraphics[width=#1]{#2}
+    \FonteTCC{#4}
+  \end{figure}
+}
+
+\newcommand{\figuraplaceholder}[4][0.72\textwidth]{%
+  \begin{figure}[H]
+    \centering
+    \caption{#2}\label{#4}
+    \fcolorbox{black!45}{cinzaFundo}{%
+      \parbox[c][5.2cm][c]{#1}{\centering\color{cinzaPlaceholder}%
+      INSIRA AQUI\\[4pt]mapa, perfil, fotografia ou diagrama}}
+    \FonteTCC{#3}
+  \end{figure}
+}
+
+\DeclareFloatingEnvironment[
+  fileext=loq,
+  listname={Lista de quadros},
+  name=Quadro,
+  placement=H
+]{quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newenvironment{paisagem}{\begin{landscape}}{\end{landscape}}
+
+\newcommand{\TituloCompletoTCC}{%
+  \TituloTCC\ifstrempty{\SubtituloTCC}{}{:\ \SubtituloTCC}%
+}
+
+\newcommand{\AssinaturaTCC}[3]{%
+  \vspace{1.15cm}
+  \noindent\rule{10cm}{0.4pt}\\[-2pt]
+  #1\\#2\\#3
+}
+
+\newcommand{\imprimircapaGeologia}{%
+  \begin{capa}
+    \centering\OnehalfSpacing
+    \includegraphics[width=3.45cm]{logo-ufsc.png}\par
+    \vspace{0.35cm}
+    {\bfseries\MakeUppercase{\InstituicaoTCC}\par}
+    {\bfseries\MakeUppercase{\CentroTCC}\par}
+    {\bfseries\MakeUppercase{\DepartamentoTCC}\par}
+    {\bfseries\MakeUppercase{\CursoTCC}\par}
+    \vfill
+    {\bfseries\MakeUppercase{\AutorTCC}\par}
+    \vfill
+    {\bfseries\MakeUppercase{\TituloCompletoTCC}\par}
+    \vfill
+    {\bfseries\MakeUppercase{\CidadeTCC}\par}
+    {\bfseries\AnoTCC\par}
+  \end{capa}
+}
+
+\newcommand{\imprimirfolhaderostoGeologia}{%
+  \begin{titlingpage}
+    \centering\OnehalfSpacing
+    {\bfseries\MakeUppercase{\AutorTCC}\par}
+    \vfill
+    {\bfseries\MakeUppercase{\TituloCompletoTCC}\par}
+    \vfill
+    \begin{adjustwidth}{8cm}{0cm}
+      \SingleSpacing\small
+      \PreambuloTCC\par\medskip
+      Orientador: \OrientadorTCC.\par
+      \ifstrempty{\CoorientadorTCC}{}{Coorientador: \CoorientadorTCC.\par}
+    \end{adjustwidth}
+    \vfill
+    {\bfseries\MakeUppercase{\CidadeTCC}\par}
+    {\bfseries\AnoTCC\par}
+  \end{titlingpage}
+}
+
+\newcommand{\imprimirfichacatalograficaModelo}{%
+  \clearpage\thispagestyle{empty}
+  \vspace*{\fill}
+  \begin{center}
+  \fbox{\begin{minipage}[c][7.2cm][c]{0.86\textwidth}
+    \centering\small
+    \textbf{Ficha de identificação da obra}\\[0.7cm]
+    \TextoModelo{Substitua esta página pela ficha gerada no serviço oficial da BU/UFSC.}\\[0.4cm]
+    \url{https://ficha.bu.ufsc.br/}
+  \end{minipage}}
+  \end{center}
+}
+
+\newcommand{\imprimirfolhadeaprovacaoGeologia}{%
+  \begin{folhadeaprovacao}
+    \centering\OnehalfSpacing
+    {\bfseries\AutorTCC\par}
+    \vspace{1cm}
+    {\bfseries\MakeUppercase{\TituloCompletoTCC}\par}
+    \vspace{1cm}
+    Este Trabalho de Conclusão de Curso foi julgado adequado para obtenção do título de \GrauTCC\ e aprovado em sua forma final pelo Curso de Graduação em Geologia.\par
+    \vspace{0.5cm}
+    \CidadeTCC, \DataDefesaTCC.\par
+    \vspace{0.6cm}
+    \textbf{Coordenação do curso}\par
+    \AssinaturaTCC{\CoordenadorTCC}{Coordenação do Curso de Geologia}{Universidade Federal de Santa Catarina}
+    \vspace{0.3cm}
+    \textbf{Banca examinadora}\par
+    \AssinaturaTCC{\OrientadorTCC}{Orientador}{Universidade Federal de Santa Catarina}
+    \AssinaturaTCC{\MembroUmTCC}{Membro}{\InstituicaoMembroUm}
+    \AssinaturaTCC{\MembroDoisTCC}{Membro}{\InstituicaoMembroDois}
+  \end{folhadeaprovacao}
+}
+
+\AtBeginDocument{%
+  \hypersetup{pdftitle={\TituloTCC},pdfauthor={\AutorTCC},pdfsubject={\PreambuloTCC}}
+}

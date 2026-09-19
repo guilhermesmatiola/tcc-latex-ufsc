@@ -1,0 +1,81 @@
+% Template de TCC — Curso de Graduação em Geologia — UFSC
+% Compile com XeLaTeX (Overleaf) ou Tectonic.
+\documentclass[
+  12pt,
+  oneside,
+  a4paper,
+  chapter=TITLE,
+  section=TITLE,
+  english,
+  brazil
+]{abntex2}
+
+\input{dados}
+\usepackage{estilo/tcc-geologia-ufsc}
+
+\begin{document}
+\selectlanguage{brazil}
+\frenchspacing
+\OnehalfSpacing
+
+% -----------------------------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% -----------------------------------------------------------------------------
+\pretextual
+\imprimircapaGeologia
+\imprimirfolhaderostoGeologia
+\imprimirfichacatalograficaModelo
+\imprimirfolhadeaprovacaoGeologia
+\input{pre-textuais/dedicatoria}
+\input{pre-textuais/agradecimentos}
+\input{pre-textuais/epigrafe}
+\input{pre-textuais/resumo}
+\input{pre-textuais/abstract}
+
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+
+\pdfbookmark[0]{\listofquadrosname}{loq}
+\listofquadros
+\cleardoublepage
+
+\input{pre-textuais/siglas}
+\input{pre-textuais/simbolos}
+
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+% -----------------------------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% Em abnTeX2, \chapter representa uma seção primária na apresentação ABNT.
+% -----------------------------------------------------------------------------
+\textual
+\pagestyle{tccgeologia}
+\input{capitulos/01-introducao}
+\input{capitulos/02-area-estudo-contexto-geologico}
+\input{capitulos/03-materiais-metodos}
+\input{capitulos/04-resultados}
+\input{capitulos/05-discussao}
+\input{capitulos/06-conclusoes}
+
+% -----------------------------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% -----------------------------------------------------------------------------
+\postextual
+\bibliography{referencias}
+
+\begin{apendicesenv}
+  \input{pos-textuais/apendice-a}
+\end{apendicesenv}
+
+\begin{anexosenv}
+  \input{pos-textuais/anexo-a}
+\end{anexosenv}
+
+\end{document}
